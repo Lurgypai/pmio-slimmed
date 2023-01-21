@@ -1,0 +1,20 @@
+# this gives access to the mpich header files
+prefix=/global/homes/k/keeganih/mpich_tmpfs_log_ins
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: mpich
+Description: High Performance and portable MPI
+Version: 4.0a2
+URL: http://www.mcs.anl.gov/research/projects/mpich
+Requires:
+Libs: -Wl,-rpath -Wl,${exec_prefix}/lib -Wl,--enable-new-dtags  -L${libdir} -lmpi   -lpthread  S["HWLOC_EMBEDDED_LIBS"]="-lm  -ludev -lpciaccess" -L/global/homes/k/keeganih/mpich_tmpfs_log_ins/lib  -lrt -lrdmacm -libverbs -lefa -latomic -lpthread -ldl -lrt 
+Cflags:   -I${includedir}
+
+# pkg-config does not understand Cxxflags, etc. So we allow users to
+# query them using the --variable option
+
+cxxflags=  -I${includedir}
+fflags= -I${includedir}
+fcflags= -I${includedir}
